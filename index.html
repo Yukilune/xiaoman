@@ -906,7 +906,8 @@ function wearText(t, held){
   const gaps = held >= 5 ? Math.max(2, Math.round(chars.length * 0.18)) : Math.max(1, Math.round(chars.length * 0.08));
   for (let k = 0; k < gaps; k++){
     const i = (held * 7 + k * 13 + chars.length) % chars.length;
-    if (chars[i].trim() !== "") chars[i] = "▒";
+    // 磨损用「全角空格」表示“这个字掉了”，不要用 ▒（手机字体没有这个字形，会显示成豆腐块）
+    if (chars[i].trim() !== "") chars[i] = "　";
   }
   return chars.join("");
 }
